@@ -32,3 +32,8 @@ class NeuralNetwork(object):
         for layer in self.layers[1: -1]:
             signaling = _signal(signaling, tuple(layer))
         return(signaling)
+    def approach(self, other_neural_network, magnitude = 1):
+        for layer_index in range(len(self.layers)):
+            for neuron_index in range(len(self.layers[layer_index])):
+                for weight_index in range(len(self.layers[layer_index][neuron_index])):
+                    self.layers[layer_index][neuron_index][weight_index] = (self.layers[layer_index][neuron_index][weight_index] + other_neural_network.layers[layer_index][neuron_index][weight_index] * magnitude) / (1 + magnitude)
